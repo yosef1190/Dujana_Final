@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dujana Spare Parts · ዱጃና የስፓር ዕቃዎች</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body class="lang-en">
+
+<!-- SPINNER -->
+<div id="spinner" class="spinner-overlay">
+  <div class="spinner-ring"></div>
+  <div class="spinner-brand">DUJANA</div>
+</div>
+
+<!-- TOASTS -->
+<div id="toast-container"></div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     NAVBAR
+═══════════════════════════════════════════════════════════ -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+
+    <!-- Brand -->
+    <a href="#home" class="nav-brand">
+      <div class="brand-emblem"><i class="fas fa-gear"></i></div>
+      <div class="brand-text">
+        <span class="brand-name">DUJANA</span>
+        <span class="brand-tagline lang-en-text">Spare Parts</span>
+        <span class="brand-tagline lang-am-text">የስፓር ዕቃዎች</span>
+      </div>
+    </a>
+
+    <!-- Desktop links -->
+    <nav class="nav-links">
+      <a href="#home"     class="nav-link active lang-en-text">Home</a>
+      <a href="#home"     class="nav-link active lang-am-text">ቤት</a>
+      <a href="#products" class="nav-link lang-en-text">Products</a>
+      <a href="#products" class="nav-link lang-am-text">ምርቶች</a>
+      <a href="#features" class="nav-link lang-en-text">About</a>
+      <a href="#features" class="nav-link lang-am-text">ስለ እኛ</a>
+      <a href="#footer"   class="nav-link lang-en-text">Contact</a>
+      <a href="#footer"   class="nav-link lang-am-text">ያግኙን</a>
+    </nav>
+
+    <!-- Right actions -->
+    <div class="nav-right">
+
+      <!-- Theme toggle -->
+      <button class="btn-theme" id="themeToggle" onclick="toggleTheme()" title="Toggle theme">
+        <i class="fas fa-moon" id="themeIcon"></i>
+      </button>
+
+      <!-- Language toggle -->
+      <button class="btn-lang" onclick="toggleLanguage()">
+        <i class="fas fa-globe"></i>
+        <span class="lang-label lang-en-text">አማርኛ</span>
+        <span class="lang-label lang-am-text">English</span>
+      </button>
+
+      <!-- Admin login / logout -->
+      <button class="btn-admin-login" id="adminNavBtn" onclick="openLoginModal()">
+        <i class="fas fa-shield-halved"></i>
+        <span class="lang-en-text">admin</span>
+        <span class="lang-am-text">አስተዳዳሪ</span>
+      </button>
+      <button class="btn-logout hidden" id="logoutBtn" onclick="handleLogout()">
+        <i class="fas fa-arrow-right-from-bracket"></i>
+        <span class="lang-en-text">Logout</span>
+        <span class="lang-am-text">ውጣ</span>
+      </button>
+
+      <!-- Hamburger -->
+      <button class="nav-hamburger" id="hamburgerBtn" onclick="toggleMobileNav()">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile nav drawer -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#home"     class="mobile-nav-link lang-en-text" onclick="closeMobileNav()"><i class="fas fa-house" style="margin-right:10px;color:var(--primary)"></i>Home</a>
+  <a href="#home"     class="mobile-nav-link lang-am-text" onclick="closeMobileNav()"><i class="fas fa-house" style="margin-right:10px;color:var(--primary)"></i>ቤት</a>
+  <a href="#products" class="mobile-nav-link lang-en-text" onclick="closeMobileNav()"><i class="fas fa-box" style="margin-right:10px;color:var(--primary)"></i>Products</a>
+  <a href="#products" class="mobile-nav-link lang-am-text" onclick="closeMobileNav()"><i class="fas fa-box" style="margin-right:10px;color:var(--primary)"></i>ምርቶች</a>
+  <a href="#features" class="mobile-nav-link lang-en-text" onclick="closeMobileNav()"><i class="fas fa-info-circle" style="margin-right:10px;color:var(--primary)"></i>About</a>
+  <a href="#features" class="mobile-nav-link lang-am-text" onclick="closeMobileNav()"><i class="fas fa-info-circle" style="margin-right:10px;color:var(--primary)"></i>ስለ እኛ</a>
+  <a href="#footer"   class="mobile-nav-link lang-en-text" onclick="closeMobileNav()"><i class="fas fa-phone" style="margin-right:10px;color:var(--primary)"></i>Contact</a>
+  <a href="#footer"   class="mobile-nav-link lang-am-text" onclick="closeMobileNav()"><i class="fas fa-phone" style="margin-right:10px;color:var(--primary)"></i>ያግኙን</a>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     HERO — FULL SCREEN
+═══════════════════════════════════════════════════════════ -->
+<section class="hero" id="home">
+  <div class="slideshow">
+
+    <!-- Slide 1 -->
+    <div class="slide active">
+      <div class="slide-inner">
+        <div class="slide-text">
+          <div class="slide-eyebrow">
+            <i class="fas fa-shield-halved"></i>
+            <span class="lang-en-text">Ethiopia's #1 Auto Parts Store</span>
+            <span class="lang-am-text">ኢትዮጵያ ቁ.1 የመኪና ዕቃዎች መደብር</span>
+          </div>
+          <h1 class="slide-h1 lang-en-text">Premium<br>Quality<br><span class="accent">Auto<br>Parts</span></h1>
+          <h1 class="slide-h1 lang-am-text">ፕሪሚየም<br>ጥራት<br><span class="accent">የመኪና<br>ዕቃዎች</span></h1>
+          <p class="slide-p lang-en-text">Find genuine OEM and aftermarket parts for every vehicle. Fast delivery across Ethiopia.</p>
+          <p class="slide-p lang-am-text">ለእያንዳንዱ ተሽከርካሪ ሕጋዊ OEM እና አፍተርማርኬት ዕቃዎች ያግኙ። በኢትዮጵያ ሁሉ ፈጣን ማድረስ።</p>
+          <div class="slide-actions">
+            <a href="#products" class="btn-hero-primary">
+              <i class="fas fa-bolt"></i>
+              <span class="lang-en-text">Shop Now</span>
+              <span class="lang-am-text">አሁን ይግዙ</span>
+            </a>
+            <a href="#features" class="btn-hero-secondary">
+              <span class="lang-en-text">Learn More</span>
+              <span class="lang-am-text">የበለጠ ይወቁ</span>
+              <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+          <div class="slide-stats">
+            <div class="slide-stat">
+              <div class="slide-stat-num">500<span>+</span></div>
+              <div class="slide-stat-label lang-en-text">Products</div>
+              <div class="slide-stat-label lang-am-text">ምርቶች</div>
+            </div>
+            <div class="slide-stat">
+              <div class="slide-stat-num">2,000<span>+</span></div>
+              <div class="slide-stat-label lang-en-text">Happy Clients</div>
+              <div class="slide-stat-label lang-am-text">ደስተኛ ደንበኞች</div>
+            </div>
+            <div class="slide-stat">
+              <div class="slide-stat-num">10<span>+</span></div>
+              <div class="slide-stat-label lang-en-text">Years Exp.</div>
+              <div class="slide-stat-label lang-am-text">ዓመታት ልምድ</div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-visual">
+          <div class="car-circle">
+            <i class="fas fa-car car-icon"></i>
+          </div>
+          <div class="float-badge"><i class="fas fa-certificate"></i>OEM Quality</div>
+          <div class="float-badge"><i class="fas fa-truck-fast"></i>
+            <span class="lang-en-text">Fast Delivery</span>
+            <span class="lang-am-text">ፈጣን ማድረስ</span>
+          </div>
+          <div class="float-badge"><i class="fas fa-tags"></i>
+            <span class="lang-en-text">Best Prices</span>
+            <span class="lang-am-text">ምርጥ ዋጋ</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide">
+      <div class="slide-inner">
+        <div class="slide-text">
+          <div class="slide-eyebrow">
+            <i class="fas fa-engine"></i>
+            <span class="lang-en-text">Engine Specialists</span>
+            <span class="lang-am-text">የሞተር ስፔሻሊስቶች</span>
+          </div>
+          <h1 class="slide-h1 lang-en-text">Engine &<br><span class="accent">Filter</span><br>Experts</h1>
+          <h1 class="slide-h1 lang-am-text">ሞተር እና<br><span class="accent">ፍልተር</span><br>ኤክስፐርቶች</h1>
+          <p class="slide-p lang-en-text">Premium engine components to keep your vehicle running at peak performance.</p>
+          <p class="slide-p lang-am-text">ተሽከርካሪዎ በከፍተኛ አፈጻጸም እንዲሄድ ፕሪሚየም ዕቃዎች።</p>
+          <div class="slide-actions">
+            <a href="#products" class="btn-hero-primary">
+              <i class="fas fa-search"></i>
+              <span class="lang-en-text">Browse Parts</span>
+              <span class="lang-am-text">ዕቃዎችን ያስሱ</span>
+            </a>
+            <a href="#features" class="btn-hero-secondary">
+              <span class="lang-en-text">Why Us</span>
+              <span class="lang-am-text">ለምን እኛ</span>
+              <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+          <div class="slide-stats">
+            <div class="slide-stat">
+              <div class="slide-stat-num">100<span>%</span></div>
+              <div class="slide-stat-label lang-en-text">Genuine Parts</div>
+              <div class="slide-stat-label lang-am-text">ሕጋዊ ዕቃዎች</div>
+            </div>
+            <div class="slide-stat">
+              <div class="slide-stat-num">24<span>hr</span></div>
+              <div class="slide-stat-label lang-en-text">Fast Delivery</div>
+              <div class="slide-stat-label lang-am-text">ፈጣን ማድረስ</div>
+            </div>
+            <div class="slide-stat">
+              <div class="slide-stat-num">30<span>d</span></div>
+              <div class="slide-stat-label lang-en-text">Returns</div>
+              <div class="slide-stat-label lang-am-text">መመለሻ</div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-visual">
+          <div class="car-circle">
+            <i class="fas fa-gear car-icon"></i>
+          </div>
+          <div class="float-badge"><i class="fas fa-wrench"></i>
+            <span class="lang-en-text">Expert Install</span>
+          </div>
+          <div class="float-badge"><i class="fas fa-shield-alt"></i>Warranty</div>
+          <div class="float-badge"><i class="fas fa-star"></i>
+            <span class="lang-en-text">Top Rated</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide">
+      <div class="slide-inner">
+        <div class="slide-text">
+          <div class="slide-eyebrow">
+            <i class="fas fa-bolt"></i>
+            <span class="lang-en-text">Brakes & Electrical</span>
+            <span class="lang-am-text">ብሬኮች እና ኤሌክትሪካል</span>
+          </div>
+          <h1 class="slide-h1 lang-en-text">Safety First.<br><span class="accent">Always.</span></h1>
+          <h1 class="slide-h1 lang-am-text">ደህንነት<br><span class="accent">ቅደም።</span></h1>
+          <p class="slide-p lang-en-text">Safety-critical brake and electrical components at competitive prices. Free consultation with every purchase.</p>
+          <p class="slide-p lang-am-text">ደህንነት ወሳኝ ብሬክ እና ኤሌክትሪካል ዕቃዎች ተወዳዳሪ ዋጋ። ከእያንዳንዱ ግዥ ጋር ነፃ ምክር።</p>
+          <div class="slide-actions">
+            <a href="#products" class="btn-hero-primary">
+              <i class="fas fa-shopping-cart"></i>
+              <span class="lang-en-text">View All Products</span>
+              <span class="lang-am-text">ሁሉም ምርቶችን ይመልከቱ</span>
+            </a>
+          </div>
+          <div class="slide-stats">
+            <div class="slide-stat">
+              <div class="slide-stat-num">5<span>★</span></div>
+              <div class="slide-stat-label lang-en-text">Avg Rating</div>
+              <div class="slide-stat-label lang-am-text">አማካይ ደረጃ</div>
+            </div>
+            <div class="slide-stat">
+              <div class="slide-stat-num">50<span>+</span></div>
+              <div class="slide-stat-label lang-en-text">Brands</div>
+              <div class="slide-stat-label lang-am-text">ብራንዶች</div>
+            </div>
+            <div class="slide-stat">
+              <div class="slide-stat-num">12<span>+</span></div>
+              <div class="slide-stat-label lang-en-text">Categories</div>
+              <div class="slide-stat-label lang-am-text">ምድቦች</div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-visual">
+          <div class="car-circle">
+            <i class="fas fa-car-burst car-icon"></i>
+          </div>
+          <div class="float-badge"><i class="fas fa-circle-check"></i>Safety Tested</div>
+          <div class="float-badge"><i class="fas fa-percent"></i>
+            <span class="lang-en-text">Best Deals</span>
+          </div>
+          <div class="float-badge"><i class="fas fa-headset"></i>Support 24/7</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dots & arrows -->
+  <div class="slide-controls" id="slideControls">
+    <button class="slide-arrow slide-prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+    <div id="slideDots" style="display:flex;gap:8px;align-items:center"></div>
+    <button class="slide-arrow slide-next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     WHY CHOOSE US — FEATURES
+═══════════════════════════════════════════════════════════ -->
+<section class="features-section" id="features">
+  <div class="features-inner">
+    <p class="section-eyebrow lang-en-text">WHY CHOOSE US</p>
+    <p class="section-eyebrow lang-am-text">ለምን እኛን ይምረጡ</p>
+    <h2 class="section-title">
+      <span class="lang-en-text">The Dujana Advantage</span>
+      <span class="lang-am-text">የዱጃና ጥቅም</span>
+    </h2>
+    <p class="section-subtitle">
+      <span class="lang-en-text">We go beyond just selling parts — we ensure your vehicle stays road-ready.</span>
+      <span class="lang-am-text">ዕቃዎችን ብቻ ከመሸጥ ባሻገር — ተሽከርካሪዎ መንገድ ዝግጁ ሆኖ እንዲቆይ እናረጋግጣለን።</span>
+    </p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon-wrap"><i class="fas fa-certificate"></i></div>
+        <h3 class="feature-title lang-en-text">100% Genuine Parts</h3>
+        <h3 class="feature-title lang-am-text">100% ሕጋዊ ዕቃዎች</h3>
+        <p class="feature-desc lang-en-text">Every part we sell is sourced from verified manufacturers and certified suppliers.</p>
+        <p class="feature-desc lang-am-text">የምንሸጠው እያንዳንዱ ዕቃ ከተረጋገጡ አምራቾች እና ብቃት ያላቸው አቅራቢዎች ነው።</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon-wrap"><i class="fas fa-headset"></i></div>
+        <h3 class="feature-title lang-en-text">Expert Consultation</h3>
+        <h3 class="feature-title lang-am-text">የባለሙያ ምክር</h3>
+        <p class="feature-desc lang-en-text">Our team of auto experts helps you find the exact part for your vehicle model.</p>
+        <p class="feature-desc lang-am-text">የመኪና ባለሙያዎቻችን ለተሽከርካሪ ሞዴልዎ ትክክለኛውን ዕቃ እንዲያገኙ ይረዳሉ።</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon-wrap"><i class="fas fa-truck-fast"></i></div>
+        <h3 class="feature-title lang-en-text">Lightning Fast Delivery</h3>
+        <h3 class="feature-title lang-am-text">ፈጣን ማድረስ</h3>
+        <p class="feature-desc lang-en-text">Same-day delivery within Addis Ababa. Nationwide shipping within 3–5 days.</p>
+        <p class="feature-desc lang-am-text">በአዲስ አበባ ተመሳሳይ ቀን ማድረስ። በ3-5 ቀናት ውስጥ ብሔራዊ መላኪያ።</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon-wrap"><i class="fas fa-tags"></i></div>
+        <h3 class="feature-title lang-en-text">Competitive Pricing</h3>
+        <h3 class="feature-title lang-am-text">ተወዳዳሪ ዋጋ</h3>
+        <p class="feature-desc lang-en-text">We offer the best market prices with regular discounts and loyalty rewards.</p>
+        <p class="feature-desc lang-am-text">መደበኛ ቅናሾች እና የታማኝነት ሽልማቶች ጋር ምርጥ የገበያ ዋጋዎችን እናቀርባለን።</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon-wrap"><i class="fas fa-shield-alt"></i></div>
+        <h3 class="feature-title lang-en-text">Warranty Protected</h3>
+        <h3 class="feature-title lang-am-text">ዋስትና ጥበቃ</h3>
+        <p class="feature-desc lang-en-text">All parts come with manufacturer warranty. Hassle-free returns within 30 days.</p>
+        <p class="feature-desc lang-am-text">ሁሉም ዕቃዎች የአምራቾቹ ዋስትና አላቸው። በ30 ቀናት ውስጥ ምቹ መመለሻ።</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon-wrap"><i class="fas fa-mobile-screen-button"></i></div>
+        <h3 class="feature-title lang-en-text">Easy Online Ordering</h3>
+        <h3 class="feature-title lang-am-text">ቀላል የኦንላይን ትዕዛዝ</h3>
+        <p class="feature-desc lang-en-text">Browse, compare, and order directly through our website or call us anytime.</p>
+        <p class="feature-desc lang-am-text">ያስሱ፣ ያወዳድሩ እና ቀጥታ ሳይቱን በኩል ይዘዙ ወይም በማንኛውም ጊዜ ይደውሉ።</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PRODUCTS SECTION
+═══════════════════════════════════════════════════════════ -->
+<section class="products-section" id="products">
+  <div class="products-inner">
+
+    <!-- Admin banner (shown when logged in) -->
+    <div id="adminBanner" class="admin-banner hidden">
+      <div class="admin-info">
+        <div class="admin-avatar"><i class="fas fa-user-shield"></i></div>
+        <div class="admin-info-text">
+          <span class="admin-welcome lang-en-text">Welcome back,</span>
+          <span class="admin-welcome lang-am-text">እንኳን ደህና መጡ,</span>
+          <span class="admin-name" id="adminName"></span>
+        </div>
+      </div>
+      <div class="admin-actions">
+        <button class="btn-add-product" onclick="openProductModal()">
+          <i class="fas fa-plus"></i>
+          <span class="lang-en-text">+ Add Product</span>
+          <span class="lang-am-text">+ ምርት ጨምር</span>
+        </button>
+        <button class="btn-change-password" onclick="openChangePasswordModal()">
+          <i class="fas fa-key"></i>
+          <span class="lang-en-text">Change Password</span>
+          <span class="lang-am-text">የይለፍ ቃል ቀይር</span>
+        </button>
+        <button class="btn-admin-logout-sm" onclick="handleLogout()">
+          <i class="fas fa-arrow-right-from-bracket"></i>
+          <span class="lang-en-text">Logout</span>
+          <span class="lang-am-text">ውጣ</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Section title -->
+    <div class="products-heading">
+      <h2>
+        <span class="lang-en-text">Our Products</span>
+        <span class="lang-am-text">ምርቶቻችን</span>
+      </h2>
+      <span class="products-count" id="productsCount">0</span>
+    </div>
+
+    <!-- Filters -->
+    <div class="filter-section">
+      <div class="search-wrap">
+        <i class="fas fa-magnifying-glass search-icon"></i>
+        <input type="text" id="searchInput" class="search-input"
+          placeholder="Search parts in English or አማርኛ..."
+          oninput="debounceSearch(this.value)" />
+        <button class="search-clear" id="searchClear" onclick="clearSearch()" style="display:none">
+          <i class="fas fa-xmark"></i>
+        </button>
+      </div>
+      <div class="filters-row">
+        <select id="categoryFilter" class="filter-select" onchange="applyFilters()">
+          <option value="">All Categories</option>
+        </select>
+        <div class="price-filter">
+          <input type="number" id="minPrice" class="price-input" placeholder="Min ETB" oninput="applyFilters()" />
+          <span class="price-sep">—</span>
+          <input type="number" id="maxPrice" class="price-input" placeholder="Max ETB" oninput="applyFilters()" />
+        </div>
+        <button class="btn-clear-filters" onclick="clearFilters()">
+          <i class="fas fa-rotate-left"></i>
+          <span class="lang-en-text">Reset</span>
+          <span class="lang-am-text">አጽዳ</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="results-info" id="resultsCount"></div>
+
+    <!-- Grid -->
+    <div class="products-grid" id="productsGrid"></div>
+
+    <!-- Empty state -->
+    <div class="empty-state hidden" id="emptyState">
+      <div class="empty-icon"><i class="fas fa-magnifying-glass"></i></div>
+      <h3 class="lang-en-text">No products found</h3>
+      <h3 class="lang-am-text">ምንም ምርቶች አልተገኙም</h3>
+      <p class="lang-en-text">Try different search terms or clear filters</p>
+      <p class="lang-am-text">የተለዩ ቃላት ወይም ሁሉንም ያጽዱ</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════════════ -->
+<footer class="footer" id="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="brand-emblem"><i class="fas fa-gear"></i></div>
+      <div>
+        <h3 class="lang-en-text">Dujana Spare Parts</h3>
+        <h3 class="lang-am-text">ዱጃና የስፓር ዕቃዎች</h3>
+        <div class="footer-divider"></div>
+        <p class="lang-en-text">Ethiopia's trusted source for genuine auto spare parts. Serving drivers since 2008 with quality and integrity.</p>
+        <p class="lang-am-text">ኢትዮጵያ ውስጥ ሕጋዊ ዕቃዎች ታማኝ ምንጭ። ጥራት እና ቅንነት ጋር ከ2008 ዓ.ም ጀምሮ።</p>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4 class="lang-en-text">Navigation</h4>
+      <h4 class="lang-am-text">አሰሳ</h4>
+      <a href="#home" class="lang-en-text">Home</a>
+      <a href="#home" class="lang-am-text">ቤት</a>
+      <a href="#products" class="lang-en-text">Products</a>
+      <a href="#products" class="lang-am-text">ምርቶች</a>
+      <a href="#features" class="lang-en-text">About</a>
+      <a href="#features" class="lang-am-text">ስለ እኛ</a>
+    </div>
+    <div class="footer-col">
+      <h4 class="lang-en-text">Contact Us</h4>
+      <h4 class="lang-am-text">ያግኙን</h4>
+      <div class="footer-contact-row"><i class="fas fa-phone"></i><span>+251 911 234 567</span></div>
+      <div class="footer-contact-row"><i class="fas fa-envelope"></i><span>info@dujana.et</span></div>
+      <div class="footer-contact-row">
+        <i class="fas fa-location-dot"></i>
+        <span class="lang-en-text">Addis Ababa, Ethiopia</span>
+        <span class="lang-am-text">አዲስ አበባ፣ ኢትዮጵያ</span>
+      </div>
+      <div class="footer-contact-row">
+        <i class="fas fa-clock"></i>
+        <span class="lang-en-text">Mon–Sat  8AM–6PM</span>
+        <span class="lang-am-text">ሰኞ–ቅዳሜ  8:00–18:00</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2024 <a href="#home">Dujana Spare Parts</a>. 
+      <span class="lang-en-text">All rights reserved.</span>
+      <span class="lang-am-text">መብቱ የተጠበቀ ነው።</span>
+    </span>
+    <span>Made with <i class="fas fa-heart" style="color:var(--primary)"></i> in Ethiopia</span>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════════
+     MODALS
+═══════════════════════════════════════════════════════════ -->
+
+<!-- LOGIN MODAL -->
+<div class="modal-overlay hidden" id="loginModal">
+  <div class="modal modal-sm">
+    <div class="modal-header">
+      <div class="modal-title-group">
+        <div class="modal-icon green"><i class="fas fa-shield-halved"></i></div>
+        <div>
+          <h2 class="lang-en-text">Admin Login</h2>
+          <h2 class="lang-am-text">አስተዳዳሪ ግባ</h2>
+          <p class="lang-en-text">Sign in to manage your store</p>
+          <p class="lang-am-text">መደብርዎን ለማስተዳደር ይግቡ</p>
+        </div>
+      </div>
+      <button class="modal-close" onclick="closeModal('loginModal')"><i class="fas fa-xmark"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group" style="margin-bottom:14px">
+        <label><i class="fas fa-user"></i>
+          <span class="lang-en-text">Username</span>
+          <span class="lang-am-text">የተጠቃሚ ስም</span>
+        </label>
+        <div class="input-wrap">
+          <i class="fas fa-user"></i>
+          <input type="text" id="loginUsername" class="form-input" placeholder="admin"
+            onkeydown="if(event.key==='Enter')handleLogin()" autocomplete="username" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label><i class="fas fa-lock"></i>
+          <span class="lang-en-text">Password</span>
+          <span class="lang-am-text">የይለፍ ቃል</span>
+        </label>
+        <div class="input-wrap">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="loginPassword" class="form-input" placeholder="••••••••"
+            onkeydown="if(event.key==='Enter')handleLogin()" autocomplete="current-password" />
+          <button class="toggle-pw" onclick="togglePw('loginPassword',this)" type="button"><i class="fas fa-eye"></i></button>
+        </div>
+      </div>
+      <div id="loginError" class="form-error hidden"></div>
+      <button class="btn-primary full-width" onclick="handleLogin()" id="loginBtn">
+        <i class="fas fa-arrow-right-to-bracket"></i>
+        <span class="lang-en-text">Sign In</span>
+        <span class="lang-am-text">ግባ</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCT MODAL -->
+<div class="modal-overlay hidden" id="productModal">
+  <div class="modal modal-lg">
+    <div class="modal-header">
+      <div class="modal-title-group">
+        <div class="modal-icon green"><i class="fas fa-cubes"></i></div>
+        <div>
+          <h2 id="productModalTitle">
+            <span class="lang-en-text">Add Product</span>
+            <span class="lang-am-text">ምርት ጨምር</span>
+          </h2>
+          <p class="lang-en-text">Fill in all details for bilingual listing</p>
+          <p class="lang-am-text">ሁለት ቋንቋ ዝርዝር ሁሉንም ሙሉ</p>
+        </div>
+      </div>
+      <button class="modal-close" onclick="closeModal('productModal')"><i class="fas fa-xmark"></i></button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="productId" />
+      <div class="img-upload-box">
+        <div class="img-preview-frame" id="imgPreviewFrame">
+          <img id="imagePreview" src="" alt="" class="hidden" />
+          <div id="imagePlaceholder" class="img-placeholder">
+            <i class="fas fa-image"></i>
+            <span class="lang-en-text">Product image</span>
+            <span class="lang-am-text">የምርት ምስል</span>
+          </div>
+        </div>
+        <input type="file" id="imageFileInput" accept="image/*" class="hidden" onchange="uploadImage(this)" />
+        <button class="btn-upload" onclick="document.getElementById('imageFileInput').click()" type="button">
+          <i class="fas fa-cloud-arrow-up"></i>
+          <span class="lang-en-text">Upload Image</span>
+          <span class="lang-am-text">ምስል ጫን</span>
+        </button>
+        <input type="hidden" id="productImagePath" />
+      </div>
+      <div class="form-grid">
+        <div class="form-group"><label><i class="fas fa-tag"></i>Name (English)</label><input type="text" id="pNameEn" class="form-input" placeholder="e.g. Brake Disc Set" /></div>
+        <div class="form-group"><label><i class="fas fa-tag"></i>ስም (አማርኛ)</label><input type="text" id="pNameAm" class="form-input amharic" placeholder="የብሬክ ዲስክ ስብስብ" /></div>
+        <div class="form-group"><label><i class="fas fa-coins"></i><span class="lang-en-text">Price (ETB)</span><span class="lang-am-text">ዋጋ (ብር)</span></label><input type="number" id="pPrice" class="form-input" placeholder="0.00" min="0" step="0.01" /></div>
+        <div class="form-group"><label><i class="fas fa-warehouse"></i><span class="lang-en-text">Stock Qty</span><span class="lang-am-text">ክምችት</span></label><input type="number" id="pStock" class="form-input" placeholder="0" min="0" /></div>
+        <div class="form-group"><label><i class="fas fa-layer-group"></i>Category (English)</label><input type="text" id="pCategoryEn" class="form-input" placeholder="Brakes / Engine / Filters" /></div>
+        <div class="form-group"><label><i class="fas fa-layer-group"></i>ምድብ (አማርኛ)</label><input type="text" id="pCategoryAm" class="form-input amharic" placeholder="ብሬክ / ሞተር / ፍልተሮች" /></div>
+        <div class="form-group"><label><i class="fas fa-store"></i>Seller (English)</label><input type="text" id="pSellerEn" class="form-input" placeholder="Dujana Auto Parts" /></div>
+        <div class="form-group"><label><i class="fas fa-store"></i>ሻጭ (አማርኛ)</label><input type="text" id="pSellerAm" class="form-input amharic" placeholder="ዱጃና የመኪና ዕቃዎች" /></div>
+        <div class="form-group form-group-full"><label><i class="fas fa-phone"></i><span class="lang-en-text">Phone</span><span class="lang-am-text">ስልክ</span></label><input type="text" id="pPhone" class="form-input" placeholder="+251911234567" /></div>
+        <div class="form-group form-group-full"><label><i class="fas fa-align-left"></i>Description (English)</label><textarea id="pDescEn" class="form-textarea" rows="3" placeholder="Describe the product..."></textarea></div>
+        <div class="form-group form-group-full"><label><i class="fas fa-align-left"></i>መግለጫ (አማርኛ)</label><textarea id="pDescAm" class="form-textarea amharic" rows="3" placeholder="ምርቱን ይግለጹ..."></textarea></div>
+      </div>
+      <div id="productError" class="form-error hidden"></div>
+      <div class="modal-actions">
+        <button class="btn-secondary" onclick="closeModal('productModal')"><i class="fas fa-xmark"></i><span class="lang-en-text">Cancel</span><span class="lang-am-text">ሰርዝ</span></button>
+        <button class="btn-primary" onclick="saveProduct()" id="saveProductBtn"><i class="fas fa-floppy-disk"></i><span class="lang-en-text">Save Product</span><span class="lang-am-text">ምርት አስቀምጥ</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL MODAL -->
+<div class="modal-overlay hidden" id="detailModal">
+  <div class="modal modal-lg">
+    <div class="modal-header">
+      <div class="modal-title-group">
+        <div class="modal-icon green"><i class="fas fa-circle-info"></i></div>
+        <div>
+          <h2 id="detailTitle"></h2>
+          <span id="detailCategory" class="detail-cat-badge"></span>
+        </div>
+      </div>
+      <button class="modal-close" onclick="closeModal('detailModal')"><i class="fas fa-xmark"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="detail-layout">
+        <div class="detail-img"><img id="detailImage" src="" alt="" style="display:none" /></div>
+        <div class="detail-col">
+          <div class="detail-price-row">
+            <div class="detail-price" id="detailPrice"></div>
+            <span class="detail-stock-badge" id="detailStock"></span>
+          </div>
+          <div class="detail-desc" id="detailDesc"></div>
+          <div>
+            <button class="btn-contact-seller" onclick="toggleSellerInfo('detailContact')">
+              <i class="fas fa-phone-volume"></i>
+              <span class="lang-en-text">Contact Seller</span>
+              <span class="lang-am-text">ሻጩን ያግኙ</span>
+            </button>
+            <div id="detailContact" class="seller-reveal hidden">
+              <div class="seller-row"><i class="fas fa-store"></i><span id="detailSeller"></span></div>
+              <div class="seller-row"><i class="fas fa-phone"></i><a id="detailPhone" href="#"></a></div>
+            </div>
+          </div>
+          <div class="card-admin-row hidden" id="detailAdminActions">
+            <button class="btn-edit" id="detailEditBtn"><i class="fas fa-pen-to-square"></i><span class="lang-en-text">Edit</span><span class="lang-am-text">አርትዕ</span></button>
+            <button class="btn-delete" id="detailDeleteBtn"><i class="fas fa-trash-can"></i><span class="lang-en-text">Delete</span><span class="lang-am-text">ሰርዝ</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONFIRM DELETE -->
+<div class="modal-overlay hidden" id="confirmModal">
+  <div class="modal modal-sm">
+    <div class="modal-header">
+      <div class="modal-title-group">
+        <div class="modal-icon red"><i class="fas fa-triangle-exclamation"></i></div>
+        <div>
+          <h2 class="lang-en-text">Delete Product</h2>
+          <h2 class="lang-am-text">ምርት ሰርዝ</h2>
+          <p class="lang-en-text">This action cannot be undone</p>
+          <p class="lang-am-text">ይህ ድርጊት ሊቀለበስ አይችልም</p>
+        </div>
+      </div>
+      <button class="modal-close" onclick="closeModal('confirmModal')"><i class="fas fa-xmark"></i></button>
+    </div>
+    <div class="modal-body">
+      <p style="color:var(--text-2);font-size:.9rem;margin-bottom:6px" class="lang-en-text">Are you sure you want to permanently delete this product?</p>
+      <p style="color:var(--text-2);font-size:.9rem;margin-bottom:6px" class="lang-am-text">ይህን ምርት ለዘለዓለም መሰረዝ እርግጠኛ ነዎት?</p>
+      <input type="hidden" id="deleteProductId" />
+      <div class="modal-actions">
+        <button class="btn-secondary" onclick="closeModal('confirmModal')"><i class="fas fa-xmark"></i><span class="lang-en-text">Cancel</span><span class="lang-am-text">ሰርዝ</span></button>
+        <button class="btn-danger" onclick="confirmDelete()"><i class="fas fa-trash-can"></i><span class="lang-en-text">Delete</span><span class="lang-am-text">ሰርዝ</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHANGE PASSWORD MODAL -->
+<div class="modal-overlay hidden" id="changePasswordModal">
+  <div class="modal modal-sm">
+    <div class="modal-header">
+      <div class="modal-title-group">
+        <div class="modal-icon blue"><i class="fas fa-key"></i></div>
+        <div>
+          <h2 class="lang-en-text">Change Password</h2>
+          <h2 class="lang-am-text">የይለፍ ቃል ቀይር</h2>
+          <p class="lang-en-text">Update your admin password</p>
+          <p class="lang-am-text">የአስተዳዳሪ የይለፍ ቃልዎን ያዘምኑ</p>
+        </div>
+      </div>
+      <button class="modal-close" onclick="closeModal('changePasswordModal')"><i class="fas fa-xmark"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group" style="margin-bottom:14px">
+        <label><i class="fas fa-lock"></i>
+          <span class="lang-en-text">Current Password</span>
+          <span class="lang-am-text">የአሁኑ የይለፍ ቃል</span>
+        </label>
+        <div class="input-wrap">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="currentPassword" class="form-input" placeholder="••••••••" autocomplete="current-password" />
+          <button class="toggle-pw" onclick="togglePw('currentPassword',this)" type="button"><i class="fas fa-eye"></i></button>
+        </div>
+      </div>
+      <div class="form-group" style="margin-bottom:14px">
+        <label><i class="fas fa-lock"></i>
+          <span class="lang-en-text">New Password</span>
+          <span class="lang-am-text">አዲስ የይለፍ ቃል</span>
+        </label>
+        <div class="input-wrap">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="newPassword" class="form-input" placeholder="••••••••" autocomplete="new-password" />
+          <button class="toggle-pw" onclick="togglePw('newPassword',this)" type="button"><i class="fas fa-eye"></i></button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label><i class="fas fa-lock"></i>
+          <span class="lang-en-text">Confirm Password</span>
+          <span class="lang-am-text">የይለፍ ቃል ያረጋግጡ</span>
+        </label>
+        <div class="input-wrap">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="confirmPassword" class="form-input" placeholder="••••••••" autocomplete="new-password" />
+          <button class="toggle-pw" onclick="togglePw('confirmPassword',this)" type="button"><i class="fas fa-eye"></i></button>
+        </div>
+      </div>
+      <div id="changePasswordError" class="form-error hidden"></div>
+      <div id="changePasswordSuccess" class="form-success hidden"></div>
+      <div class="modal-actions">
+        <button class="btn-secondary" onclick="closeModal('changePasswordModal')">
+          <i class="fas fa-xmark"></i>
+          <span class="lang-en-text">Cancel</span>
+          <span class="lang-am-text">ሰርዝ</span>
+        </button>
+        <button class="btn-primary" onclick="handleChangePassword()" id="changePasswordBtn">
+          <i class="fas fa-check"></i>
+          <span class="lang-en-text">Update Password</span>
+          <span class="lang-am-text">የይለፍ ቃል ይልወጡ</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/static/js/main.js"></script>
+</body>
+</html>

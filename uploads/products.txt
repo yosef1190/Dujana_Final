@@ -1,0 +1,3 @@
+id|name_en|name_am|price|category_en|category_am|stock|desc_en|desc_am|image_path|seller_en|seller_am|phone|created_at
+7eb0d1cb|Brake Disc Set|የብሬክ ዲስክ ስብስብ|13950|Brakes|ብሬክስ|In Stock|High-performance ventilated brake discs for superior stopping power.|ከፍተኛ አፈጻጸም ያላቸው የአየር ዝውውር የሚያስችላቸው የብሬክ ዲስኮች።|https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=400|Ahmed Hassan|አህመድ ሀሰን|+251 911 234 567|2026-02-26T19:53:44.678625
+d226f4c0|Oil Filter Premium|የዘይት ማጣሪያ|2015|Filters|ማጣሪያዎች|In Stock|Advanced filtration technology to keep your engine running clean.|ኤንጂንዎን ንጹህ እና ለስላሳ እንዲሰራ የሚያደርግ የላቀ የማጣሪያ ቴክኖሎጂ።|https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=400|Mohammed Ali|መሀመድ አሊ|+251 922 345 678|2026-02-26T19:53:44.678733
